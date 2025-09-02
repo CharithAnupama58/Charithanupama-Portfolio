@@ -1,5 +1,5 @@
 {
-  "name": "your-portfolio",
+  "name": "charith-portfolio",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -8,9 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "start": "react-scripts start",
+    "start": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "homepage": "https://CharithAnupama58.github.io/Charithanupama-Portfolio",
   "dependencies": {
