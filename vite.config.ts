@@ -3,20 +3,25 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+// Resolve __dirname in ES Module
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default defineConfig({
+  // Base path for GitHub Pages (replace with your repo name)
+  base: '/CharithAnupama-Portfolio/',
+
   plugins: [react()],
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
   },
+
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/tests/setup.ts',
-},
-
+  },
 })
