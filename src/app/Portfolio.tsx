@@ -53,12 +53,12 @@ const LINKS = {
   github: "https://github.com/CharithAnupama58",
   linkedin: "https://www.linkedin.com/in/charith-anupama20",
   email: "charith20anupama@gmail.com",
-  cv: "/src/CV/CharithAnupama (20).pdf", // Replace with a real CV link or file path
+  cv: "/public/CV/CharithAnupama (20).pdf", // Replace with a real CV link or file path
 };
 
 // ---- Profile photo (replace with your image path/URL) -----------------------
 // Put your picture in /public and set e.g. "/me.jpg"
-const PROFILE_IMG = "/public/xyz(1).png"; // fallback renders initials if left as "#"
+const PROFILE_IMG = "/public/images/xyz(1).png"; // fallback renders initials if left as "#"
 
 const SKILLS = {
   Frontend: [
@@ -133,21 +133,21 @@ const EDUCATION = [
     school: "University of Kelaniya",
     qual: "BSc. (Hons) in Information Technology",
     period: "2022 – Present",
-    logo: "/src/images/unnamed.jpg", // Add the logo URL here
+    logo: "/public/images/unnamed.jpg", // Add the logo URL here
   },
   {
     school: "Institute of Java and Software Engineering (IJSE)",
     qual:
       "Graduate Diploma in Software Engineering (Java, OOP, Design Patterns, DS, DBMS)",
     period: "2020 – 2022",
-    logo: "/src/images/ijse.png", // Add the logo URL here
+    logo: "/public/images/ijse.png", // Add the logo URL here
   },
   {
     school: "Mahinda College – Galle",
     qual:
       "GCE A/L (Physics C, Chemistry B, Combined Mathematics A) | GCE O/L (8 A’s, 1 C)",
     period: "2016 – 2020",
-    logo: "/src/images/MahindaCollegeLogo.jpg", // Add the logo URL here
+    logo: "/public/images/MahindaCollegeLogo.JPG", // Add the logo URL here
   },
 ];
 
@@ -218,14 +218,16 @@ export default function Portfolio() {
       {/* Nav */}
       <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-[#0b0f1a]/70 border-b border-white/10">
         <nav className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
+          
           {/* Logo / Name */}
           <div className="flex items-center gap-2">
             <Sparkles className="w-5 h-5" />
             <span className="font-semibold">{NAME}</span>
           </div>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Links + CV */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Navigation links */}
             {[
               ["home", "Home"],
               ["about", "About"],
@@ -240,29 +242,29 @@ export default function Portfolio() {
                 key={id}
                 variant="ghost"
                 className="text-sm"
-                onClick={() => scrollToId(id as string)}
+                onClick={() => scrollToId(id)}
               >
                 {label}
               </Button>
             ))}
-          </div>
 
-          {/* Mobile Hamburger + CV */}
-          <div className="flex items-center gap-2 md:hidden">
+            {/* CV button */}
             <Button
               variant="outline"
-              className="border-white/20"
+              className="border-white/20 ml-2"
               onClick={() => window.open(LINKS.cv, "_blank")}
             >
               CV <FileText className="w-4 h-4 ml-2" />
             </Button>
+          </div>
 
+          {/* Mobile Hamburger */}
+          <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-md hover:bg-white/10 transition-colors"
               aria-label="Toggle Menu"
             >
-              {/* Hamburger icon */}
               <div className="w-6 h-0.5 bg-white mb-1"></div>
               <div className="w-6 h-0.5 bg-white mb-1"></div>
               <div className="w-6 h-0.5 bg-white"></div>
@@ -273,6 +275,7 @@ export default function Portfolio() {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-[#0b0f1a]/95 backdrop-blur py-4 px-6 border-t border-white/10">
+            {/* Links */}
             {[
               ["home", "Home"],
               ["about", "About"],
@@ -287,13 +290,22 @@ export default function Portfolio() {
                 key={id}
                 className="block w-full text-left text-white/80 py-2 hover:text-indigo-400"
                 onClick={() => {
-                  scrollToId(id as string);
-                  setMobileMenuOpen(false); // close menu on click
+                  scrollToId(id);
+                  setMobileMenuOpen(false);
                 }}
               >
                 {label}
               </button>
             ))}
+
+            {/* Mobile CV button */}
+            <Button
+              variant="outline"
+              className="w-full mt-2"
+              onClick={() => window.open(LINKS.cv, "_blank")}
+            >
+              CV <FileText className="w-4 h-4 ml-2" />
+            </Button>
           </div>
         )}
       </header>
